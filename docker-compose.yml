@@ -1,0 +1,35 @@
+version: '3.4'
+
+services:
+  api:
+    build: api
+    command: uvicorn main:app --reload --host 0.0.0.0 --port 80
+    ports:
+      - 8000:80
+    depends_on:
+      - rabbitmq
+    volumes:
+      - ./api:/app
+
+  listener:
+    build: listener
+    command: sh -c "sleep 10 && python -u main.py"
+    depends_on:
+      - rabbitmq
+    volumes:
+      - ./listener:/usr/src/app
+
+  rabbitmq:
+    image: rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: "user"
+      RABBITMQ_DEFAULT_PASS: "pass"
+      RABBITMQ_DEFAULT_VHOST: "/"
+
+  db:
+    image: postgres
+    environment:
+      POSTGRES_HOST: db
+      POSTGRES_DB: devops
+      POSTGRES_USER: devops
+      POSTGRES_PASSWORD: devops
