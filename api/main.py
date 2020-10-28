@@ -8,13 +8,13 @@ app = FastAPI()
 @app.get("/")
 def root():
     credentials = pika.PlainCredentials(
-        os.getenv('RABBITMQ_USER', "user"),
-        os.getenv('RABBITMQ_PASS', "pass"))
+        os.getenv('MQ_USER', "user"),
+        os.getenv('MQ_PASS', "pass"))
 
     parameters = pika.ConnectionParameters(
-        os.getenv('RABBITMQ_HOST', "rabbitmq"),
-        os.getenv('RABBITMQ_PORT', "5672"),
-        os.getenv('RABBITMQ_VHOST', "/"),
+        os.getenv('MQ_HOST', "rabbitmq"),
+        os.getenv('MQ_PORT', "5672"),
+        os.getenv('MQ_VHOST', "/"),
         credentials
     )
 
