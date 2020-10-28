@@ -1,17 +1,20 @@
 from fastapi import FastAPI
 import pika
+import os
 
 app = FastAPI()
 
 
 @app.get("/")
 def root():
-    credentials = pika.PlainCredentials("user", "pass")
+    credentials = pika.PlainCredentials(
+        os.getenv('RABBITMQ_USER', "user"),
+        os.getenv('RABBITMQ_PASS', "pass"))
 
     parameters = pika.ConnectionParameters(
-        "rabbitmq",
-        "5672",
-        '/',
+        os.getenv('RABBITMQ_HOST', "rabbitmq"),
+        os.getenv('RABBITMQ_PORT', "5672"),
+        os.getenv('RABBITMQ_VHOST', "/"),
         credentials
     )
 
@@ -23,8 +26,8 @@ def root():
     message = "Hello World!"
 
     channel.basic_publish(exchange='',
-                      routing_key='hello',
-                      body=message)
+                          routing_key='hello',
+                          body=message)
     connection.close()
     print(f" [x] Sent '{message}'")
     return {"message": message}
