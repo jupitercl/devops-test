@@ -5,7 +5,7 @@
 ## Requirements
 
 - minikube
-- kubeclt
+- kubectl
 - helm charts
 - terraform
 
