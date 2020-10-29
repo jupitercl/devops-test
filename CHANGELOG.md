@@ -9,7 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - CHANGELOG.md
 - .gitignore
+- install helm charts
+- deployment k8s
+- create namespace terraform
 
 ### Changed
 - API get connection params from env vars
 - Listener get connection params from env vars
+- Include requirement readme
