@@ -2,23 +2,27 @@
 
 `curl localhost:8000`
 
-### Requirements
+## Requirements
 
-minikube
-kubeclt
-helm charts
-terraform
+- minikube
+- kubectl
+- helm charts
+- terraform
 
-### SimpleStep
+## SimpleStep
 
 `minikube start`
 
 `cd $HOME_REPO/ops/terraform`
+
 `terraform init`
+
 `terraform apply -auto-approve`
 
 `cd $HOME_REPO/opt/k8s`
+
 `helm create charts`
+
 `helm install values.yml charts`
 
 `kubectl apply -k ./`
