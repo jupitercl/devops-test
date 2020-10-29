@@ -4,16 +4,19 @@ import pika
 
 import db
 from models import Mensaje
+import os
 
 print("creando las tablas")
 db.Base.metadata.create_all(db.engine)
 
-credentials = pika.PlainCredentials("user", "pass")
+credentials = pika.PlainCredentials(
+    os.getenv('MQ_USER', "user"),
+    os.getenv('MQ_PASS', "pass"))
 
 parameters = pika.ConnectionParameters(
-    "rabbitmq",
-    "5672",
-    '/',
+    os.getenv('MQ_HOST', "rabbitmq"),
+    os.getenv('MQ_PORT', "5672"),
+    os.getenv('MQ_VHOST', "/"),
     credentials
 )
 
