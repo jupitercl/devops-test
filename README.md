@@ -14,11 +14,15 @@
 `minikube start`
 
 `cd $HOME_REPO/ops/terraform`
+
 `terraform init`
+
 `terraform apply -auto-approve`
 
 `cd $HOME_REPO/opt/k8s`
+
 `helm create charts`
+
 `helm install values.yml charts`
 
 `kubectl apply -k ./`
