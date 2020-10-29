@@ -2,14 +2,14 @@
 
 `curl localhost:8000`
 
-### Requirements
+## Requirements
 
-minikube
-kubeclt
-helm charts
-terraform
+- minikube
+- kubeclt
+- helm charts
+- terraform
 
-### SimpleStep
+## SimpleStep
 
 `minikube start`
 
