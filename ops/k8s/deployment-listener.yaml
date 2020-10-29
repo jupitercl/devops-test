@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: talana-listener
+  labels:
+    app: talana
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: talana
+      tier: listener
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: talana
+        tier: listener
+    spec:
+      containers:
+      - image: devops-test_listener
+        name: listener
+        imagePullPolicy: Never
+        command: ["sh"]
+        args: ["-c", "sleep 10 && python -u main.py"]
+        env:
+        - name: DB_HOST
+          value: {{ .Values.postgres.host }}
+        - name: DB_NAME
+          value: {{ .Values.postgres.name }}
+        - name: DB_USER
+          value: {{ .Values.postgres.user }}
+        - name: DB_PASSWORD
+          value: {{ .Values.postgres.pass }}
+        - name: MQ_HOST
+          value: {{ .Values.rabbitmq.host }}
+        - name: MQ_PORT
+          value: {{ .Values.rabbitmq.port }}
+        - name: MQ_USER
+          value: {{ .Values.rabbitmq.user }}
+        - name: MQ_PASS
+          value: {{ .Values.rabbitmq.pass }}
+        - name: MQ_VHOST
+          value: {{ .Values.rabbitmq.vhost }}

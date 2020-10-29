@@ -1,0 +1,5 @@
+resources:
+  - deployment-rabbitmq.yaml
+  - deployment-postgres.yaml
+  - deployment-listener.yaml
+  - deployment-api.yaml

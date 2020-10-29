@@ -1,0 +1,14 @@
+# Postgres
+postgres:
+  host: talana-postgres
+  name: devops
+  user: devops
+  pass: devops
+
+# RabbitMQ
+rabbitmq:
+  host: talana-rabbitmq
+  port: 5672
+  user: user
+  pass: pass
+  vhost: /
